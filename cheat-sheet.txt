@@ -1,0 +1,27 @@
+So build your Dockerfile, with all the things needed. Packages, versions etc. And then build the image
+
+docker build -t image_tag(legacy-build-env) .
+
+-t -> name (tag) image
+. -> build context (current directory)
+
+
+Then to check any images available type :
+
+docker images
+
+Run a container, iteractive  dev
+
+docker run -it --rm -v $(pwd):/work legacy-build-env bash
+
+-it -> iteractive terminal
+
+--rm -> auto-delete container on exit
+
+-v $(pwd):/work -> mount current directory into container
+
+bash -> start a shell
+
+How to exit a container
+
+exit

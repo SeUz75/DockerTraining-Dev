@@ -1,27 +1,73 @@
 So build your Dockerfile, with all the things needed. Packages, versions etc. And then build the image
 
-docker build -t image_tag(legacy-build-env) .
+        docker build -t image_tag(legacy-build-env) .
 
--t -> name (tag) image
-. -> build context (current directory)
+    -t -> name (tag) image
+    . -> build context (current directory)
 
 
 Then to check any images available type :
 
-docker images
+    docker images
+
+
+How to start a stopped container
+
+    docker start -ai legacy-container
+
 
 Run a container, iteractive  dev
 
-docker run -it --rm -v $(pwd):/work legacy-build-env bash
+        docker run -it --rm -v $(pwd):/work legacy-build-env bash
 
--it -> iteractive terminal
+    -it -> iteractive terminal
 
---rm -> auto-delete container on exit
+    --rm -> auto-delete container on exit
 
--v $(pwd):/work -> mount current directory into container
+    If you want to preserve the container run it with out
 
-bash -> start a shell
+        --rm
+
+        Something like this
+
+        docker run -it -v ${pwd}:/work --name legacy-container legacy-build-env bash
+
+        Or if you want to keep running after exiting
+
+            docker run -dit -v $(pwd):/work --name legacy-container legacy-build-env bash
+
+
+    -v $(pwd):/work -> mount current directory into container
+
+    bash -> start a shell
 
 How to exit a container
 
-exit
+    exit
+
+Check running containers
+
+        docker ps
+
+    All the containers, including the stopped ones
+
+        docker ps -a
+
+Re-enter a running container
+
+    docker exec -it <container_id_or_name> bash
+
+Run a stopped container
+
+    docker run -ai legacy-container
+
+Stop a running container
+
+    docker stop <container_id_or_name> bash
+
+Force to kill
+
+    docker kill <container_id_or_name>
+
+
+

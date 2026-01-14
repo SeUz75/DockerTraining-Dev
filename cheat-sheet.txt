@@ -30,7 +30,7 @@ Run a container, iteractive  dev
 
         Something like this
 
-        docker run -it -v ${pwd}:/work --name legacy-container legacy-build-env bash
+        docker run -it -v $(pwd):/work --name legacy-container legacy-build-env bash
 
         Or if you want to keep running after exiting
 

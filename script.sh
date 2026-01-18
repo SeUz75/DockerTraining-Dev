@@ -10,10 +10,14 @@ create_project () {
 
     cat >> CMakeLists.txt <<'EOF'
 cmake_minimum_required(VERSION 3.10)
+
 project()
-add_compile_options(-Wall -Wextra -Wpendatic)
+
+add_compile_options(-Wall -Wextra -Wpedantic)
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDART_REQUIRED ON)
+
 EOF
 
     for (( i = 0; i < $FILES; i++)) {
@@ -62,8 +66,6 @@ execute_app() {
 # Source - https://stackoverflow.com/a/18560673
 # Posted by konsolebox, modified by community. See post 'Timeline' for change history
 # Retrieved 2026-01-14, License - CC BY-SA 3.0
-
-
 
 echo "${ESCAPE}[1;33m The following functions are available :${ESCAPE}[0m"
 

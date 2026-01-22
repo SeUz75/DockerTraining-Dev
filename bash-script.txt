@@ -1,0 +1,47 @@
+In this file I'm gonna be writing cool stuff and tips about bash,
+
+The programs you run in bash can we be, build in, installed. To check what type is your program you are running use :
+
+type -a PROGRAM/COMMAND
+
+Example :
+
+    type -a ls
+
+    ls is aliased to `ls --color=auto'
+    ls is /usr/bin/ls
+    ls is /bin/ls
+
+If your program/command is build in shell, to check what is does type :
+
+    help COMMND
+
+    or
+
+    man command # if program has man page, also there are many man pages !
+
+    # Check
+
+    man 2 open # You will open, command open
+
+
+Also man pages, seperated by their content :
+
+       1   Executable programs or shell commands
+       2   System calls (functions provided by the kernel)
+       3   Library calls (functions within program libraries)
+       4   Special files (usually found in /dev)
+       5   File formats and conventions, e.g. /etc/passwd
+       6   Games
+       7   Miscellaneous (including macro packages and conventions), e.g. man(7), groff(7), man-pages(7)
+       8   System administration commands (usually only for root)
+       9   Kernel routines [Non standard]
+
+
+and to check which programs are build in type :
+
+    compgen -b
+
+Another useful command when checking ${PATH}, just translate : to \n the following way :
+
+echo ${PATH} | tr : '\n'

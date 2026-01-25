@@ -45,3 +45,134 @@ and to check which programs are build in type :
 Another useful command when checking ${PATH}, just translate : to \n the following way :
 
 echo ${PATH} | tr : '\n'
+
+
+When do we use the $() ?
+
+    The $() syntax in Bash is used for command substitution. It allows you to execute a command and substitute its output in place of the $() expression.
+    This is useful when you want to use the output of a command as an argument for another command or assign it to a variable
+
+Looping in bashscript
+
+
+for ....; do
+
+done
+
+echo "Files are "
+
+for file in $(ls); do
+
+    echo "${file}"
+
+done
+
+
+for thing in foo bar baz bat; do
+
+    echo "Thing is ${thing}"
+
+done
+
+
+Lets talk about the bash -n command. Which checks your bashscript for any syntax errors whithout running your code !
+
+Also you can use the echo $?. If returns 0 is successful, anything else is not successful.
+
+
+type yes in the terminal, see what happens XD
+
+$1 -> special symbol
+
+if .....; then
+
+fi
+
+if [[ -n $1 ]]; then
+        # Checks if the $1 is set !
+fi
+
+
+help test
+
+$@ -> expands to all input arguments example :
+
+for thing in $@; do
+    echo "Argument is -> ${thing}"
+done
+
+
+Functions example :
+    #!/bin/bash
+    echo "Hello user !"
+
+
+    greetings() {
+
+        [[ -z $1 ]] && {
+            echo "failed !!!"
+            return 20
+        }           || {
+            echo "Directory is -> $1"
+            return 0
+        }
+
+    }
+
+
+    [[ -n $1 ]] && {
+        echo " Lsing the directory you pointed ! "
+        DIRECTORY=$1
+    }           || {
+        # read -p "Enter the directory you wanna ls " DIRECTORY
+        echo "You entered nothing !"
+    }
+
+    greetings ${DIRECTORY}
+
+    # echo "Files : "
+
+    # SUBDIRS=$(ls ${DIRECTORY})
+
+    # echo "SUBDIRS, realpaths ? "
+
+    # for files in ${SUBDIRS}; do
+    #     # echo "file is -> ${files}"
+    #     # sudo realpath ${files} | ls
+
+    # done
+
+
+
+Conditionals !!!
+
+
+if [[ $a == $b ]]; do
+    echo "a and b are the same"
+fi
+
+if ! [[ $a == $b ]]; do
+    echo "Files are not the samge "
+fi
+
+if [[ -f file.txt ]]; do
+    echo "File exists and it is a file "
+fi
+
+While loop + conditionals
+
+    while [[ -f file.txt ]]; do
+        echo "File exists ! "
+        sleep 1
+    done
+
+
+How to execute a command and check if it worked !
+
+    if ls; then
+        echo "Ls worked !!!"
+    fi
+
+Said by "You Suck At Programming" to only use [[ ]] for bash script, more robust, better
+
+03-04 FOR LOOPS
